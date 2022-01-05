@@ -17,9 +17,9 @@
     // $database->con();
     $user = new User(@$login, @$password);
     $user = new Log(@$login, @$password);
-    $user = new Read(@$login, @$password);
+    // $user = new Read(@$login, @$password);
     $user->register(@$login, @$password);
-    $user->read_user();
+    // $user->read_user();
 
     
     ?>

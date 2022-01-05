@@ -14,7 +14,6 @@ class Con{
                 echo "error : " . $e->getMessage();
             }
             
-           
             return($pdo);
     
         }  
