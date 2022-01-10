@@ -8,7 +8,7 @@
                 <li class="navli"><a href="planning.php">Planning</a></li>
                 <li class="navli"><a href="https://github.com/laura-scognamiglio/reservation-salles" target="_blank">Git</a></li>
                     <?php
-                    session_start();
+                    // session_start();
                     
                     
                // balise php avec la condition de reconnaisance du profil user
@@ -20,9 +20,10 @@
                 }
                  // destruction de la session si bouton deconnexion enclencher
                 if(isset($_POST['deco'])){ 
+
                     
                     session_destroy();
-                    header('Location:index.php');
+                    // header('Location:index.php');
                 }
                 ?>
 

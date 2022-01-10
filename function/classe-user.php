@@ -1,12 +1,15 @@
 <?php
-    include('bdd-connect.php');
+    require_once('database.php');
+    require_once('model.php');
   
-class User extends Con{
+class User extends Model{
     private $login;
     private $password;
 
+   
 
     public function __construct($login, $password){
+        parent::__construct();
         $this->login = $login;
         $this->password = $password; 
     }

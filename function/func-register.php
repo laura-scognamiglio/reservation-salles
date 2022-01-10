@@ -1,11 +1,16 @@
 <?php
 require_once('classe-user.php');
+require_once('database.php');
+require_once('model.php');
+ 
 
-class Log extends User{
-    public function register($login, $password){
-        $con = $this->con();
+class Register extends User{
+
+    public function registerIn($login, $password){
         $getLg = $this->setLogin($login);
         $getPw = $this->setPassword($password);
+      
+
 
         @$submit = $_POST['submit'];
         @$confirm = $_POST['confirm'];
@@ -13,10 +18,9 @@ class Log extends User{
         if(isset($submit)){
 
             $error = array();
-
             $read = ("SELECT * FROM `utilisateurs` WHERE `login` = '$getLg'");
 
-            $read_user = $con->prepare($read);
+            $read_user = $this->pdo->prepare($read);
             $read_user->execute();
             $users = $read_user->fetchAll();
           
@@ -43,7 +47,7 @@ class Log extends User{
                         $pw_hash = password_hash($getPw, PASSWORD_BCRYPT);
                         $sql = "INSERT INTO `utilisateurs` (`login`, `password`) VALUES (:login , :password)";
 
-                        $insert = $con->prepare($sql);
+                        $insert = $this->pdo->prepare($sql);
                         $insert->execute(array(
                             ":login" => $getLg, 
                             ":password" => $pw_hash ));
@@ -54,10 +58,50 @@ class Log extends User{
                     default:
                         echo "An error occurred. Please try again <br>";
                         break;
+                    return $insert;
                 }
             }
+            return $users;
         }      
         
+        
+    }
+
+    public function connect($login, $password)
+    {
+        
+        $getLg = $this->setLogin($login);
+        $getPw = $this->setPassword($password);
+   
+     
+        @$submit = $_POST['submit'];
+       
+        if(isset($submit))
+        {
+            $read = ("SELECT * FROM `utilisateurs` WHERE `login` = '$getLg'");
+
+            $read_user = $this->pdo->prepare($read);
+            $read_user->execute();
+            $users = $read_user->fetchAll();
+            
+var_dump($users);
+            if(count($users) != 0)
+            {
+                $_SESSION['user'] = $user_connected; 
+                $pwd_user_connected = $user_connected[0]["password"];
+                password_verify($getPw, $pwd_user_connected);
+                    // header('Location:index.php');
+                    echo "the user is connected";
+            }
+            elseif($getLg != $user_connected['login'])
+            {
+                echo "the id is wrong ";
+            }
+        
+           return $user_connected;
+           
+         }
+         
     }
 
 }
