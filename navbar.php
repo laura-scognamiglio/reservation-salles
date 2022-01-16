@@ -6,6 +6,8 @@
                 <li class="navli"><a href="inscription.php">Inscription</a></li>
                 <li class="navli"><a href="connexion.php">Connexion</a></li>
                 <li class="navli"><a href="planning.php">Planning</a></li>
+                <li class="navli"><a href="reservation.php">Reservation</a></li>
+                <li class="navli"><a href="reservation-form.php">Formulaire</a></li>
                 <li class="navli"><a href="https://github.com/laura-scognamiglio/reservation-salles" target="_blank">Git</a></li>
                     <?php
                     // session_start();

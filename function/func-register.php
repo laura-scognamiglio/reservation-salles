@@ -1,24 +1,24 @@
 <?php
 require_once('classe-user.php');
-require_once('database.php');
+// require_once('database.php');
 require_once('model.php');
  
-
+// regex pour mot de passes  preg-match pour la sécu!  
 class Register extends User{
+
+    protected $table = "utilisateurs";
 
     public function registerIn($login, $password){
         $getLg = $this->setLogin($login);
         $getPw = $this->setPassword($password);
       
-
-
         @$submit = $_POST['submit'];
         @$confirm = $_POST['confirm'];
 
         if(isset($submit)){
 
             $error = array();
-            $read = ("SELECT * FROM `utilisateurs` WHERE `login` = '$getLg'");
+            $read = ("SELECT * FROM {$this->table} WHERE `login` = '$getLg'");
 
             $read_user = $this->pdo->prepare($read);
             $read_user->execute();
@@ -45,7 +45,7 @@ class Register extends User{
                     
                     case(empty($error)):
                         $pw_hash = password_hash($getPw, PASSWORD_BCRYPT);
-                        $sql = "INSERT INTO `utilisateurs` (`login`, `password`) VALUES (:login , :password)";
+                        $sql = "INSERT INTO {$this->table} (`login`, `password`) VALUES (:login , :password)";
 
                         $insert = $this->pdo->prepare($sql);
                         $insert->execute(array(
@@ -78,13 +78,13 @@ class Register extends User{
        
         if(isset($submit))
         {
-            $read = ("SELECT * FROM `utilisateurs` WHERE `login` = '$getLg'");
+            $read = ("SELECT * FROM {$this->table} WHERE `login` = '$getLg'");
 
             $read_user = $this->pdo->prepare($read);
             $read_user->execute();
             $users = $read_user->fetchAll();
-            
-var_dump($users);
+
+
             if(count($users) != 0)
             {
                 $_SESSION['user'] = $user_connected; 
