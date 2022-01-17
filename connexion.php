@@ -8,7 +8,7 @@
 </head>
 <body>
     <?php
-    session_start();
+    // session_start();
     include("navbar.php");
     require_once('./function/func-register.php');
     require_once('./function/database.php');

@@ -87,21 +87,28 @@ class Register extends User{
 
             if(count($users) != 0)
             {
-                $_SESSION['user'] = $user_connected; 
-                $pwd_user_connected = $user_connected[0]["password"];
+                $_SESSION['user'] = $users[0]['login'];
+                $pwd_user_connected = $users[0]["password"];
                 password_verify($getPw, $pwd_user_connected);
                     // header('Location:index.php');
                     echo "the user is connected";
+
+                echo "<pre>";
+                var_dump($users[0]['login']);
+                echo "<pre>";
+                    
             }
-            elseif($getLg != $user_connected['login'])
+            elseif($getLg != $users[0]['login'])
             {
                 echo "the id is wrong ";
             }
         
-           return $user_connected;
-           
+           return $users;
+                
          }
-         
+             
     }
 
 }
+// session de user qui ne s'active pas lors du vardump 
+//users marche mais j'ai mal défini $session 

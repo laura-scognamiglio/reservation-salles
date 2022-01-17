@@ -13,7 +13,7 @@
     require_once('./function/classe-reservation.php');
 
     $resa = new Model();
-    $resa = new Reservation($id, $titre, $description, $debut, $fin, $id_user);
+    $resa = new Reservation( $titre, $description, $debut, $fin);
     // $resa->setId();
     // $resa->find();
     ?>
