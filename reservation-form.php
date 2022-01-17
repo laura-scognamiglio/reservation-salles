@@ -12,11 +12,12 @@
     include("navbar.php");
     require_once('./function/classe-reservation.php');
 
-        $id_user = $_SESSION['user'];
+        $id_user = $_SESSION['id'];
         @$titre = $_POST['titre'];
         @$description = $_POST['desc'];
         @$debut = $_POST['debut'];
         @$fin = $_POST['fin'];
+
 
     $resa = new Reservation($titre, $description, $debut, $fin, $id_utilisateur);
     $resa->registerResa($titre, $description, $debut, $fin, $id_utilisateur);

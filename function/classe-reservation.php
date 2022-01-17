@@ -22,20 +22,23 @@ class Reservation extends Model{
     
     public function registerResa(){
 
-        $read_resa_sql = ("SELECT * FROM `utilisateurs` INNER JOIN `reservations` WHERE utilisateurs.id = reservations.id_utilisateur");
+        $user_connected = new Register(@$login, @$password);
+        $user_connected->connect(@$login, @$password);
+      
+        $id_user = $_SESSION['user'];
+
+        $read_resa_sql = ("SELECT * FROM `utilisateurs` WHERE `login`= '$id_user'");
 
         $read_resa = $this->pdo->prepare($read_resa_sql);
         $read_resa->execute();
         $resa = $read_resa->fetchAll();
+       
         
-        $id_resa_user = $resa[0]['id_utilisateur'];
+        $id_resa_user = $resa[0]['id'];
         echo "<pre>";
-        var_dump($resa);
+        var_dump($resa );
         echo "<pre>";
-       
-        $user_connected = new Register(@$login, @$password);
-        $user_connected->connect(@$login, @$password);
-       
+      
 
         @$titre = $_POST['titre'];
         @$description = $_POST['desc'];
