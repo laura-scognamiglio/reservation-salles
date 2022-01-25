@@ -76,20 +76,24 @@ class Reservation extends Model{
         // echo $d;
 
         // $jour_traduits = array(0=>'Lundi', 1=>'Mardi', 2=>'Mercredi', 3=>'Jeudi',4=>'Vendredi', 5=>'Samedi', 6=>'Dimanche');
-        $tps = 1;
+               // $date = date("d-m-Y ", strtotime('monday this week '));
+
 
 // la date d'aujourd'hui 
         $locale = "fr_FR.UTF-8";
         $formatter = new IntlDateFormatter($locale, IntlDateFormatter::MEDIUM, IntlDateFormatter::NONE, "Europe/Paris");
-        $date = new DateTime("NOW");
-        // $date = date("d-m-Y ", strtotime('monday this week '));
-        
-        echo $formatter->format($date);
+        $dateFR = new DateTime("NOW");
 
-        var_dump($date);
-        return $date;
+        // $dateFR = 
+        
+        echo $formatter->format($dateFR);
+
+        // var_dump($date);
+        return $dateFR;
+
+        
             
     }
 
-   
+    
 }

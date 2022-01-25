@@ -18,6 +18,7 @@
     $resa_salle = new Reservation($titre, $description, $debut, $fin, $id_user);
 
     $resa_salle->modifResa();
+   
 
     // $date_resa = new Semaine('1', '8');
     // $date_resa->toString();
@@ -31,25 +32,29 @@
                 <table class="struct">
                     <thead>
                         <th></th>
-                        <td></td>
-                        <td>
-                            <th>
-                                <?php for ($i = 0; $i <7; $i ++): ?>
-
+                            <?php for ($i = 0; $i <7; $i ++): ?>
+                                <th>
                                     <?= date("d-m-Y ", strtotime('monday this week + '.$i.' days'));  ?>
-                                <?php endfor; ?>
-                            </th>
-                        </td>
+                                </th>
+                            <?php endfor; ?>
                     </thead>
                     <tbody>
-                        <td>
-                            <?php for ($j = 0; $j <20 && $j >7; $j ++): ?>
-                                <?= date("H-i-s  ");  ?>
-                            <?php endfor; ?>
-                        </td>
+                        <?php 
+                            for ($j = 8;  $j <19 ; $j ++): ?>
+                              <td> <?= $j . "h00" ?>
+                                    <tr></tr>
+                               </td>          
+                        <?php endfor; ?> 
                     </tbody>
                 </table>
             </section>
         </main>
     </body>
 </html>
+
+<!-- 
+    ds le tbody une boucle pr l'amplitude horaire
+    un td pour j.'oohoo'
+    boucle sur les lignes 
+    conditions afficher les cellules ou pas 
+ -->
