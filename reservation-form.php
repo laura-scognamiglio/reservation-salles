@@ -16,7 +16,7 @@
         @$titre = $_POST['titre'];
         @$description = $_POST['desc'];
         @$debut = $_POST['debut'];
-        @$fin = $_POST['fin'];
+       
 
 
     $resa = new Reservation($titre, $description, $debut, $fin, $id_utilisateur);
@@ -41,14 +41,10 @@
             <label for="start">date début:</label><br>
                 <input type="datetime-local" id="meeting-time"
                     name="debut" value=""
-                    min="2022-01-01T00:00" max="2022-31-12T00:00">
+                    min="2022-01-01T00:00" max="2022-31-12T00:00" step="3600" >
             </div>
             <div class= "form-group">
-            <label for="start">date fin:</label><br>
-                <input type="datetime-local" id="meeting-time"
-                    name="fin" value=""
-                    min="2022-01-01T00:00" max="2022-31-12T00:00">
-            </div>
+           
             <div class="form-group">
                 <button type="submit" name= "submit" class="btn ">Valider</button>
             </div> 

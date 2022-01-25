@@ -8,7 +8,6 @@ require_once('classe-user.php');
 class Reservation extends Model{
 
     protected $table = "reservations";
-  
     protected $titre; 
     protected $description;
     protected $debut;
@@ -35,15 +34,19 @@ class Reservation extends Model{
        
         
         $id_resa_user = $resa[0]['id'];
-        echo "<pre>";
-        var_dump($resa );
-        echo "<pre>";
+        // echo "<pre>";
+        // var_dump($resa );
+        // echo "<pre>";
       
-
+ // pour inserer ds la database un crenau d'une heure et au format de la bdd. 
         @$titre = $_POST['titre'];
         @$description = $_POST['desc'];
         @$debut = $_POST['debut'];
-        @$fin = $_POST['fin'];
+       
+        
+        $date_fin = $debut;
+        $date_fin_insert = strtotime($date_fin . "+1hour");
+        $date_fin_insert = date('Y-m-d H:i', $date_fin_insert);
         
         if(isset($_POST['submit'])){
 
@@ -52,7 +55,7 @@ class Reservation extends Model{
             $insert = $this->pdo->prepare($sql);
             $insert->execute(array(
                 ":titre" => $titre, 
-                ":fin" => $fin, 
+                ":fin" => $date_fin_insert, 
                 ":description" => $description,
                 ":debut" => $debut,
                 ":id_utilisateur" => $id_resa_user));
@@ -61,5 +64,32 @@ class Reservation extends Model{
         }
         
     }
+
+    public function modifResa(){
+
+        // date_default_timezone_set('Europe/Paris');
+        // $time = time();
+
+        // $d = new DateTime( 'NOW' );
+        // $d = date("d-m-Y ", strtotime('monday this week '));
+        
+        // echo $d;
+
+        // $jour_traduits = array(0=>'Lundi', 1=>'Mardi', 2=>'Mercredi', 3=>'Jeudi',4=>'Vendredi', 5=>'Samedi', 6=>'Dimanche');
+        $tps = 1;
+
+// la date d'aujourd'hui 
+        $locale = "fr_FR.UTF-8";
+        $formatter = new IntlDateFormatter($locale, IntlDateFormatter::MEDIUM, IntlDateFormatter::NONE, "Europe/Paris");
+        $date = new DateTime("NOW");
+        // $date = date("d-m-Y ", strtotime('monday this week '));
+        
+        echo $formatter->format($date);
+
+        var_dump($date);
+        return $date;
+            
+    }
+
    
 }
