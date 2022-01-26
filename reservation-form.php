@@ -8,15 +8,14 @@
 </head>
 <body>
     <?php
-    // session_start();
+   
     include("navbar.php");
     require_once('./function/classe-reservation.php');
 
-        $id_user = $_SESSION['id'];
-        @$titre = $_POST['titre'];
-        @$description = $_POST['desc'];
-        @$debut = $_POST['debut'];
-       
+    $id_user = $_SESSION['id'];
+    @$titre = $_POST['titre'];
+    @$description = $_POST['desc'];
+    @$debut = $_POST['debut'];
 
 
     $resa = new Reservation($titre, $description, $debut, $fin, $id_utilisateur);

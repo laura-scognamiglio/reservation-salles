@@ -8,23 +8,17 @@
 </head>
 <body>
     <?php
-    //  session_start();
+
     include("navbar.php");
     require_once('./function/func-register.php');
     require_once('./function/database.php');
     require_once('./function/model.php');
    
-    
-    
     $user = new User(@$login, @$password);
     $user = new Register(@$login, @$password);
     $pdo = new Model();
     $user->registerIn(@$login, @$password);
 
-    // $pdo->getpdo();
-    
-
-  
     ?>
     <section class= "formulaire">
                 <h2 class= "sous-titre" >Inscription</h2>

@@ -7,6 +7,10 @@ require_once('classe-user.php');
 
 class Reservation extends Model{
 
+//pour un futur projet en MVC avoir un attribut qui peux être redefinis selon les tables dont les méthodes ont besoin me permettra de bien refactoriser mon code! Une requete avc table amovible...super cool!
+//1.definir l'attribut avc la table utilisée. 
+//2.appeler l'attribut ds la requette voir exemple  
+
     protected $table = "reservations";
     protected $titre; 
     protected $description;
@@ -34,22 +38,21 @@ class Reservation extends Model{
        
         
         $id_resa_user = $resa[0]['id'];
-        // echo "<pre>";
-        // var_dump($resa );
-        // echo "<pre>";
+       
       
- // pour inserer ds la database un crenau d'une heure et au format de la bdd. 
+// pour inserer ds la database un crenau d'une heure et au format de la bdd. 
         @$titre = $_POST['titre'];
         @$description = $_POST['desc'];
         @$debut = $_POST['debut'];
        
-        
+// rajout d'une heure a l'heure du début pour avoir précisement le bon creneau 
         $date_fin = $debut;
         $date_fin_insert = strtotime($date_fin . "+1hour");
         $date_fin_insert = date('Y-m-d H:i', $date_fin_insert);
         
         if(isset($_POST['submit'])){
 
+//2.exemple d'une table definis ds la classe et rappeler avc {$this->table}
             $sql = "INSERT INTO {$this->table} (`titre`, `description`, `debut`, `fin`, `id_utilisateur`) VALUES (:titre , :description, :debut, :fin, :id_utilisateur)";
 
             $insert = $this->pdo->prepare($sql);
@@ -65,34 +68,20 @@ class Reservation extends Model{
         
     }
 
-    public function modifResa(){
+    public function jourTraduits($nombre_jour){
 
-        // date_default_timezone_set('Europe/Paris');
-        // $time = time();
+// la date d'aujourd'hui cette fonction me permet d'avoir les jours et mois en français sans avoir a parcourir un tableau 
 
-        // $d = new DateTime( 'NOW' );
-        // $d = date("d-m-Y ", strtotime('monday this week '));
-        
-        // echo $d;
-
-        // $jour_traduits = array(0=>'Lundi', 1=>'Mardi', 2=>'Mercredi', 3=>'Jeudi',4=>'Vendredi', 5=>'Samedi', 6=>'Dimanche');
-               // $date = date("d-m-Y ", strtotime('monday this week '));
-
-
-// la date d'aujourd'hui 
+//Langue locale souhaité 
         $locale = "fr_FR.UTF-8";
-        $formatter = new IntlDateFormatter($locale, IntlDateFormatter::MEDIUM, IntlDateFormatter::NONE, "Europe/Paris");
-        $dateFR = new DateTime("NOW");
-
-        // $dateFR = 
         
-        echo $formatter->format($dateFR);
+// premier IntlDateFormatter pour les jours, deuxième pour les heures, réglé sur none pour qu'elles n'apparaissent pas. 
+// la méthode va prendre en paramètre une variable qui est ds une boucle qd on va l'appeler elle prendra la variable de la boucle. 
+        $formatter = new IntlDateFormatter($locale, IntlDateFormatter::LONG, IntlDateFormatter::NONE, "Europe/Paris");
+        $dateFR = new DateTime("monday this week + $nombre_jour days");
+//mettre dans le return toute la procudure et pas juste le resultat comme ça on peut déclarer la méthode ou l'on veut <3 ! 
+        return $formatter->format($dateFR);
 
-        // var_dump($date);
-        return $dateFR;
-
-        
-            
     }
 
     

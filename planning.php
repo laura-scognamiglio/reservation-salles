@@ -10,31 +10,28 @@
     <?php
     include("navbar.php");
     require_once('./function/model.php');
-    require_once('./function/func-planning.php');
+    
     require_once('./function/classe-reservation.php');
 
     $resa = new Model();
-
-    $resa_salle = new Reservation($titre, $description, $debut, $fin, $id_user);
-
-    $resa_salle->modifResa();
-   
-
-    // $date_resa = new Semaine('1', '8');
-    // $date_resa->toString();
-
-    // $resa->setId();
-    // $resa->find();
+    $resa_salle = new Reservation(@$titre, @$description, @$debut, @$fin, @$id_user);
+    
     ?>
-
         <main>
             <section class="horaire">
                 <table class="struct">
                     <thead>
+<!-- 
+    ds le tbody une boucle pr l'amplitude horaire. / un td pour j.'oohoo' boucle sur les lignes. Séparer boucle du head et boucle du body 
+    conditions pour afficher les soit une cellule vide soit une cellule avc le contenu
+ -->
                         <th></th>
-                            <?php for ($i = 0; $i <7; $i ++): ?>
+                            <?php 
+                            for ($i = 0; $i <7; $i ++): ?>
                                 <th>
-                                    <?= date("d-m-Y ", strtotime('monday this week + '.$i.' days'));  ?>
+                                    <?=
+                                    $resa_salle->jourTraduits($i);
+                                    ?>
                                 </th>
                             <?php endfor; ?>
                     </thead>
@@ -52,9 +49,3 @@
     </body>
 </html>
 
-<!-- 
-    ds le tbody une boucle pr l'amplitude horaire
-    un td pour j.'oohoo'
-    boucle sur les lignes 
-    conditions afficher les cellules ou pas 
- -->

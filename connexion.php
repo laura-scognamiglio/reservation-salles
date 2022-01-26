@@ -8,17 +8,16 @@
 </head>
 <body>
     <?php
-    // session_start();
+
     include("navbar.php");
     require_once('./function/func-register.php');
     require_once('./function/database.php');
     require_once('./function/model.php');
 
-
+ 
     $user = new User(@$login, @$password);
     $user = new Register(@$login, @$password);
     $pdo = new Model();
-
 
     $user->connect(@$login, @$password);
     

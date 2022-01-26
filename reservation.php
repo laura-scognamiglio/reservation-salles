@@ -8,19 +8,10 @@
 </head>
 <body>
     <?php
-    // session_start();
+
     include("navbar.php");
     require_once('./function/classe-reservation.php');
-    // require_once('./function/database.php');
-    // require_once('./function/model.php');
-    
- 
 
-  
-    // $resa = new Model();
-    // $resa = new Reservation($titre, $description, $debut, $fin);
-    // $resa->setId();
-    // $resa->find();
 
 
     ?>
