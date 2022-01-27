@@ -15,10 +15,14 @@
 
     $resa = new Model();
     $resa_salle = new Reservation(@$titre, @$description, @$debut, @$fin, @$id_user);
-    
+
+    // $resa_salle->getReservation();
+
     ?>
         <main>
             <section class="horaire">
+                <!-- <button><a href="planning.php?prev">Précedent</a></button>
+                <button><a href="planning.php?next">Suivant</a></button> -->
                 <table class="struct">
                     <thead>
 <!-- 
@@ -38,9 +42,23 @@
                     <tbody>
                         <?php 
                             for ($j = 8;  $j <19 ; $j ++): ?>
-                              <td> <?= $j . "h00" ?>
-                                    <tr></tr>
-                               </td>          
+                              <tr> 
+                                <td><?= $j . "h00" ?></td>
+                                <?php
+                                for ($i = 0; $i <7; $i ++){
+                                // $resa_salle->setWeek($week);
+                                $reservation = $resa_salle->getReservation(date('Y-m-d',strtotime('Monday this week + '.$i .' days')).' '. $j. 'h00');
+                            
+                                if(!empty($reservation)){
+                                    echo '<td> Reservée :) </td>';
+                                    
+                                    }else{
+                                        echo '<td> </td>';
+                                    }
+                                    
+                                }
+                                    ?>
+                               </tr>          
                         <?php endfor; ?> 
                     </tbody>
                 </table>

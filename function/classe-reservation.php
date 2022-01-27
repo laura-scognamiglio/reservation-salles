@@ -16,6 +16,7 @@ class Reservation extends Model{
     protected $description;
     protected $debut;
     protected $fin;
+    
    
 
     public function __construct( $titre, $description, $debut, $fin, $id_user){
@@ -52,7 +53,7 @@ class Reservation extends Model{
         
         if(isset($_POST['submit'])){
 
-//2.exemple d'une table definis ds la classe et rappeler avc {$this->table}
+//2.exemple d'une table definis ds la classe et rappelé avc {$this->table} a utiliser pour le refactoring la prochaine fois <3
             $sql = "INSERT INTO {$this->table} (`titre`, `description`, `debut`, `fin`, `id_utilisateur`) VALUES (:titre , :description, :debut, :fin, :id_utilisateur)";
 
             $insert = $this->pdo->prepare($sql);
@@ -79,10 +80,31 @@ class Reservation extends Model{
 // la méthode va prendre en paramètre une variable qui est ds une boucle qd on va l'appeler elle prendra la variable de la boucle. 
         $formatter = new IntlDateFormatter($locale, IntlDateFormatter::LONG, IntlDateFormatter::NONE, "Europe/Paris");
         $dateFR = new DateTime("monday this week + $nombre_jour days");
+
 //mettre dans le return toute la procudure et pas juste le resultat comme ça on peut déclarer la méthode ou l'on veut <3 ! 
         return $formatter->format($dateFR);
 
     }
 
-    
+    public function getReservation($creneau){
+
+        $sql = "SELECT * FROM {$this->table} WHERE `debut` = :debut ";
+        $getResa = $this->pdo->prepare($sql);
+        $getResa->execute(array(":debut" => $creneau));
+                        
+        return $getResa->fetchAll();
+
+    }
+
+//     public function setWeek($week){
+//         if(!isset($_SESSION['page'])){
+//                 $_SESSION['page'] = 0;
+//         }
+//         if($_GET['prev']){
+//                 $_SESSION['page'] = $_SESSION['page'] - 7;
+//         }
+//         else if($_GET['next']){
+//                 $_SESSION['page'] = $_SESSION['page'] + 7;
+//         }
+//     }
 }
