@@ -31,6 +31,10 @@ class User extends Model{
         return $password;
     }
 
+    public function userConnected($isConnected){
+        
+    }
+
    
    
   

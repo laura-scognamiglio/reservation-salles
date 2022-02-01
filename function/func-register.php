@@ -90,12 +90,9 @@ class Register extends User{
                 $_SESSION['user'] = $users[0]['login'];
                 $pwd_user_connected = $users[0]["password"];
                 password_verify($getPw, $pwd_user_connected);
-                    // header('Location:index.php');
+                    header('Location:index.php');
                     echo "the user is connected";
 
-                echo "<pre>";
-                var_dump($users[0]['login']);
-                echo "<pre>";
                     
             }
             elseif($getLg != $users[0]['login'])

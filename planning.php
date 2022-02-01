@@ -16,7 +16,8 @@
     $resa = new Model();
     $resa_salle = new Reservation(@$titre, @$description, @$debut, @$fin, @$id_user);
 
-    // $resa_salle->getReservation();
+// $resa_salle->setWeek();
+$resa_salle->getReservation();
 
     ?>
         <main>
@@ -27,14 +28,15 @@
                     <thead>
 <!-- 
     ds le tbody une boucle pr l'amplitude horaire. / un td pour j.'oohoo' boucle sur les lignes. Séparer boucle du head et boucle du body 
-    conditions pour afficher les soit une cellule vide soit une cellule avc le contenu
+    conditions pour afficher les td :  cellule vide cellule avc le contenu
  -->
                         <th></th>
                             <?php 
                             for ($i = 0; $i <7; $i ++): ?>
                                 <th>
                                     <?=
-                                    $resa_salle->jourTraduits($i);
+                                    $test = $resa_salle->jours($i);
+                                    
                                     ?>
                                 </th>
                             <?php endfor; ?>
@@ -46,11 +48,19 @@
                                 <td><?= $j . "h00" ?></td>
                                 <?php
                                 for ($i = 0; $i <7; $i ++){
-                                // $resa_salle->setWeek($week);
-                                $reservation = $resa_salle->getReservation(date('Y-m-d',strtotime('Monday this week + '.$i .' days')).' '. $j. 'h00');
-                            
+                                $reservation = $resa_salle->getReservationTime(date('Y-m-d',strtotime('Monday this week + '.$i. ' days')).' '. $j. 'h00');
+                                if(isset($reservation[0]['titre'])) 
+                                    {
+                                    $titre = $reservation[0]['titre'];
+                                    }
+                                if(isset($reservation[0]['id'])) 
+                                    {
+                                    $id_resa = $reservation[0]['id'];
+                                    }
+                                    
+                                    // var_dump($reservation); fonction css trois petits points si les infos depassent de la case avc texte ovrrflow
                                 if(!empty($reservation)){
-                                    echo '<td> Reservée :) </td>';
+                                    echo "<td> Reservée :) <a href = 'reservation.php?id_resa=$id_resa' > $titre </a> </td>"; 
                                     
                                     }else{
                                         echo '<td> </td>';

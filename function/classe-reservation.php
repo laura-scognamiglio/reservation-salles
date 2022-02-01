@@ -17,7 +17,7 @@ class Reservation extends Model{
     protected $debut;
     protected $fin;
     
-   
+
 
     public function __construct( $titre, $description, $debut, $fin, $id_user){
         parent::__construct();
@@ -28,18 +28,14 @@ class Reservation extends Model{
 
         $user_connected = new Register(@$login, @$password);
         $user_connected->connect(@$login, @$password);
-      
         $id_user = $_SESSION['user'];
 
         $read_resa_sql = ("SELECT * FROM `utilisateurs` WHERE `login`= '$id_user'");
-
         $read_resa = $this->pdo->prepare($read_resa_sql);
         $read_resa->execute();
         $resa = $read_resa->fetchAll();
        
-        
         $id_resa_user = $resa[0]['id'];
-       
       
 // pour inserer ds la database un crenau d'une heure et au format de la bdd. 
         @$titre = $_POST['titre'];
@@ -54,22 +50,22 @@ class Reservation extends Model{
         if(isset($_POST['submit'])){
 
 //2.exemple d'une table definis ds la classe et rappelé avc {$this->table} a utiliser pour le refactoring la prochaine fois <3
-            $sql = "INSERT INTO {$this->table} (`titre`, `description`, `debut`, `fin`, `id_utilisateur`) VALUES (:titre , :description, :debut, :fin, :id_utilisateur)";
+        $sql = "INSERT INTO {$this->table} (`titre`, `description`, `debut`, `fin`, `id_utilisateur`) VALUES (:titre , :description, :debut, :fin, :id_utilisateur)";
 
-            $insert = $this->pdo->prepare($sql);
-            $insert->execute(array(
-                ":titre" => $titre, 
-                ":fin" => $date_fin_insert, 
-                ":description" => $description,
-                ":debut" => $debut,
-                ":id_utilisateur" => $id_resa_user));
+        $insert = $this->pdo->prepare($sql);
+        $insert->execute(array(
+        ":titre" => $titre, 
+        ":fin" => $date_fin_insert, 
+        ":description" => $description,
+        ":debut" => $debut,
+        ":id_utilisateur" => $id_resa_user));
         
         echo "reservation successfully registered <br>";
         }
         
     }
 
-    public function jourTraduits($nombre_jour){
+    public function jours($nombre_jour){
 
 // la date d'aujourd'hui cette fonction me permet d'avoir les jours et mois en français sans avoir a parcourir un tableau 
 
@@ -77,34 +73,64 @@ class Reservation extends Model{
         $locale = "fr_FR.UTF-8";
         
 // premier IntlDateFormatter pour les jours, deuxième pour les heures, réglé sur none pour qu'elles n'apparaissent pas. 
-// la méthode va prendre en paramètre une variable qui est ds une boucle qd on va l'appeler elle prendra la variable de la boucle. 
+ 
         $formatter = new IntlDateFormatter($locale, IntlDateFormatter::LONG, IntlDateFormatter::NONE, "Europe/Paris");
         $dateFR = new DateTime("monday this week + $nombre_jour days");
 
-//mettre dans le return toute la procudure et pas juste le resultat comme ça on peut déclarer la méthode ou l'on veut <3 ! 
+ 
         return $formatter->format($dateFR);
 
     }
 
-    public function getReservation($creneau){
+    public function getReservationTime($creneau){
 
         $sql = "SELECT * FROM {$this->table} WHERE `debut` = :debut ";
         $getResa = $this->pdo->prepare($sql);
         $getResa->execute(array(":debut" => $creneau));
-                        
-        return $getResa->fetchAll();
+        $result = $getResa->fetchAll();
+        // echo '<pre>';
+        // var_dump($result);
+        // echo '</pre>';
+        return   $result;
 
     }
 
-//     public function setWeek($week){
-//         if(!isset($_SESSION['page'])){
-//                 $_SESSION['page'] = 0;
-//         }
-//         if($_GET['prev']){
-//                 $_SESSION['page'] = $_SESSION['page'] - 7;
-//         }
-//         else if($_GET['next']){
-//                 $_SESSION['page'] = $_SESSION['page'] + 7;
-//         }
-//     }
+
+    public function getReservation(){
+
+        $sql = "SELECT reservations.titre, reservations.description, reservations.debut, reservations.fin, utilisateurs.login, reservations.id_utilisateur, reservations.id FROM `reservations` INNER JOIN `utilisateurs` WHERE reservations.id_utilisateur = utilisateurs.id";
+        
+    //on recup la resa seule en fonction de l'id sur la page html planning on a indiqué ds le href le get avec 'reservation.php?id_resa=$id_resa'
+
+        $getResaUser = $this->pdo->prepare($sql);
+        $getResaUser->execute();
+        $result = $getResaUser->fetchAll();
+
+        //     echo '<pre>';
+        //     var_dump($result[0]['id']);
+        //     echo '</pre>';
+
+         
+    }        
+    
+
+    public function getResaSolo(){
+
+        // $resa_solo = new Reservation(@$titre, @$description, @$debut, @$fin, @$id_user);
+        // $resa_solo->getReservation();
+
+        $id_resa = $_GET["id_resa"];
+        $sql_resa = "SELECT * FROM {$this->table} WHERE id = '$id_resa'";
+        $get_resa = $this->pdo->prepare($sql_resa);
+        $get_resa->execute();
+        $result_resa = $get_resa->fetchAll();
+
+        echo '<pre>';
+        var_dump($result_resa);
+        echo '</pre>';
+
+        return $result_resa;
+    }       
+
+    
 }
