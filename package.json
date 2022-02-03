@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.1.3",
+    "sass": "^1.49.7"
+  },
+  "name": "reservation-salles",
+  "description": "reservation de salles en POO et PDO, premier projet en orienté objet!",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass -w scss:css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laura-scognamiglio/reservation-salles.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/laura-scognamiglio/reservation-salles/issues"
+  },
+  "homepage": "https://github.com/laura-scognamiglio/reservation-salles#readme"
+}

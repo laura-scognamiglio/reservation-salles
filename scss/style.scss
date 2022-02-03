@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    ::-webkit-scrollbar{
+        display: none;
+        scroll-behavior: smooth;
+      }
+}
+
+
+body{
+
+    background-color: #92BCC0;
+    overflow-x: hidden;
+    font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+    a{
+        text-decoration: none;
+        color: #585154;
+    }
+    h2{
+        color: #585154;
+    }
+
+}
+
+.navbar{
+    padding: 10px;
+    list-style-type: none;
+    height: 80px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    ul{
+        display: flex;
+        justify-content: space-evenly;
+        
+    }
+}
+
+
+// section{
+//     .fomulaire{
+//         display: flex;
+//         flex-direction: column;
+//         justify-content: center;
+//         align-items: center;
+//     }
+// }
+   
+    

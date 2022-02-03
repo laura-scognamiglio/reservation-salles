@@ -10,6 +10,4 @@ class Model {
         $this->pdo = getpdo();
     }
 
-    
-
 }

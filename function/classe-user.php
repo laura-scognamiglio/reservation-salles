@@ -3,8 +3,8 @@
     require_once('model.php');
   
 class User extends Model{
-    private $login;
-    private $password;
+    protected $login;
+    protected $password;
 
    
 
@@ -21,13 +21,16 @@ class User extends Model{
         return $this->password;
     }
 
-    public function setLogin($login){
+    //valeur courante de ma classe 
+    public function setLogin(){
         @$login = htmlspecialchars($_POST['login']);
+        $this->login = $login;
         return $login;
     }
 
-    public function setPassword($password){
+    public function setPassword(){
         @$password = htmlspecialchars($_POST['password']);
+        $this->password = $password;
         return $password;
     }
 
@@ -35,8 +38,5 @@ class User extends Model{
         
     }
 
-   
-   
-  
 }
 

@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped:wght@300&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
@@ -16,14 +20,12 @@
     $resa = new Model();
     $resa_salle = new Reservation(@$titre, @$description, @$debut, @$fin, @$id_user);
 
-// $resa_salle->setWeek();
 $resa_salle->getReservation();
 
     ?>
         <main>
             <section class="horaire">
-                <!-- <button><a href="planning.php?prev">Précedent</a></button>
-                <button><a href="planning.php?next">Suivant</a></button> -->
+
                 <table class="struct">
                     <thead>
 <!-- 
@@ -57,10 +59,9 @@ $resa_salle->getReservation();
                                     {
                                     $id_resa = $reservation[0]['id'];
                                     }
-                                    
-                                    // var_dump($reservation); fonction css trois petits points si les infos depassent de la case avc texte ovrrflow
+                                
                                 if(!empty($reservation)){
-                                    echo "<td> Reservée :) <a href = 'reservation.php?id_resa=$id_resa' > $titre </a> </td>"; 
+                                    echo "<td> <a href = 'reservation.php?id_resa=$id_resa' > $titre </a> </td>"; 
                                     
                                     }else{
                                         echo '<td> </td>';

@@ -46,21 +46,44 @@ class Reservation extends Model{
         $date_fin = $debut;
         $date_fin_insert = strtotime($date_fin . "+1hour");
         $date_fin_insert = date('Y-m-d H:i', $date_fin_insert);
-        
-        if(isset($_POST['submit'])){
+        // var_dump($debut);
+        // var_dump($date_fin_insert);
 
+        if(isset($_POST['submit']))
+        {
+// l'impossibilité de choisir une date antérieure. 
+//comparer les deux dates en strtotime puis faire une comparaison entre le debut moins la fin si c'est positif c'est good, c'est envoyé en bdd
+            $maintenant = $_SERVER['REQUEST_TIME'];
+            $time_to_compare = strtotime($debut);
+
+            $weekday= date("l", $time_to_compare );
+            $normalized_weekday = strtolower($weekday);
+           
+            if($time_to_compare < $maintenant ) 
+            {
+                echo "Don't choose a passed time";
+            }
+// l'impossibilité de choisir une date durant le weekend.
+// je formate la date en semaine avec date("l") etb en minuscule avec strtolower
+            else if(($normalized_weekday == "saturday") || ($normalized_weekday == "sunday"))
+            {
+                echo "Not possible during the weekend";
+            }
+            else 
+            {
 //2.exemple d'une table definis ds la classe et rappelé avc {$this->table} a utiliser pour le refactoring la prochaine fois <3
-        $sql = "INSERT INTO {$this->table} (`titre`, `description`, `debut`, `fin`, `id_utilisateur`) VALUES (:titre , :description, :debut, :fin, :id_utilisateur)";
+                $sql = "INSERT INTO {$this->table} (`titre`, `description`, `debut`, `fin`, `id_utilisateur`) VALUES (:titre , :description, :debut, :fin, :id_utilisateur)";
 
-        $insert = $this->pdo->prepare($sql);
-        $insert->execute(array(
-        ":titre" => $titre, 
-        ":fin" => $date_fin_insert, 
-        ":description" => $description,
-        ":debut" => $debut,
-        ":id_utilisateur" => $id_resa_user));
-        
-        echo "reservation successfully registered <br>";
+                $insert = $this->pdo->prepare($sql);
+                $insert->execute(array(
+                ":titre" => $titre, 
+                ":fin" => $date_fin_insert, 
+                ":description" => $description,
+                ":debut" => $debut,
+                ":id_utilisateur" => $id_resa_user));
+                
+                echo "reservation successfully registered <br>";
+            }
         }
         
     }
@@ -88,9 +111,7 @@ class Reservation extends Model{
         $getResa = $this->pdo->prepare($sql);
         $getResa->execute(array(":debut" => $creneau));
         $result = $getResa->fetchAll();
-        // echo '<pre>';
-        // var_dump($result);
-        // echo '</pre>';
+       
         return   $result;
 
     }
@@ -106,11 +127,10 @@ class Reservation extends Model{
         $getResaUser->execute();
         $result = $getResaUser->fetchAll();
 
-        //     echo '<pre>';
-        //     var_dump($result[0]['id']);
-        //     echo '</pre>';
-
-         
+    //     echo '<pre>';
+    //     var_dump($result[0]['id']);
+    //     echo '</pre>';
+  
     }        
     
 

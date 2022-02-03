@@ -2,14 +2,10 @@
 <nav class= "navbar">
         <form action="index.php" method="post" >
             <ul class="navul">
-
-               
                     <?php
                     session_start();
                 // balise php avec la condition de reconnaisance du profil user
                 if(isset($_SESSION['user'])){
-                    
-                   
                     echo('<li class="navli"><a href="index.php">Accueil</a></li>');
                     echo ('<li class="navli"><a href="reservation-form.php">Formulaire</a></li>');
                     echo('<li class="navli"><a href="planning.php">Planning</a></li>');

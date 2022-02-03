@@ -12,7 +12,7 @@ function getpdo(){
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
                 //en fetch_assoc mode par defaut me permet d'avoir tous mes fetch all en fetch assoc 
             ]);
-                echo "connexion PDO opérationnelle ! <br>";
+                // echo "connexion PDO opérationnelle ! <br>";
     
             } catch(PDOException $e){
                 echo "error : " . $e->getMessage();

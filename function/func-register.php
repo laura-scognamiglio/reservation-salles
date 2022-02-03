@@ -15,8 +15,8 @@ class Register extends User{
         @$submit = $_POST['submit'];
         @$confirm = $_POST['confirm'];
 
-        if(isset($submit)){
-
+        if(isset($submit))
+        {
             $error = array();
             $read = ("SELECT * FROM {$this->table} WHERE `login` = '$getLg'");
 
@@ -24,19 +24,22 @@ class Register extends User{
             $read_user->execute();
             $users = $read_user->fetchAll();
           
-            if(empty($getLg)){
+            if(empty($getLg))
+            {
                 echo $error['login'] = "Login is empty <br>";
             }
 
-            elseif(count($users) != 0){
+            elseif(count($users) != 0)
+            {
                 echo $error['login_used'] = "Login is alredy used <br>";
             }
 
-            elseif(empty($getPw)){
+            elseif(empty($getPw))
+            {
                 echo $error['password'] = "Password is empty <br>";
             }
-
-            else{
+            else
+            {
                 switch($getPw)
                 {
                     case($getPw != $confirm):
@@ -63,8 +66,6 @@ class Register extends User{
             }
             return $users;
         }      
-        
-        
     }
 
     public function connect($login, $password)
@@ -75,37 +76,70 @@ class Register extends User{
    
      
         @$submit = $_POST['submit'];
-       
+
+      
+        // $_SESSION['password'] = $users['password'];
         if(isset($submit))
         {
-            $read = ("SELECT * FROM {$this->table} WHERE `login` = '$getLg'");
-
+            $read = "SELECT * FROM {$this->table} WHERE `login` = '$getLg'";
             $read_user = $this->pdo->prepare($read);
             $read_user->execute();
             $users = $read_user->fetchAll();
-
 
             if(count($users) != 0)
             {
                 $_SESSION['user'] = $users[0]['login'];
                 $pwd_user_connected = $users[0]["password"];
                 password_verify($getPw, $pwd_user_connected);
-                    header('Location:index.php');
-                    echo "the user is connected";
 
-                    
+                header('Location:index.php');
+                echo "the user is connected";
+                var_dump($_SESSION);
+
             }
             elseif($getLg != $users[0]['login'])
             {
                 echo "the id is wrong ";
             }
-        
            return $users;
-                
-         }
+        }
              
     }
+    public function updateUser($newlogin, $newpassword,$oldlogin)
+    {
 
+        $getLg = $this->setLogin($login);
+        $getPw = $this->setPassword($password);
+        echo "getLg";
+        var_dump($newlogin);
+
+        $read = "SELECT * FROM `utilisateurs` WHERE `login` = '$getLg'";
+        $read_user = $this->pdo->prepare($read);
+        $read_user->execute();
+        $users = $read_user->fetchAll();
+
+
+        $getLg = $_SESSION['user'];
+
+
+        if(isset($_POST['update'])){
+        
+        $newlogin = $_POST['newlogin'];
+        $newpassword = $_POST['newpassword'];
+        $_SESSION['user'] = $newlogin;
+            
+            $up = ("UPDATE {$this->table} SET `login`= :newlogin, `password`= :newpassword WHERE `login`= '{$oldlogin}'");
+
+            $update = $this->pdo->prepare($up);
+            $update->execute(array(
+                ":newlogin" => $newlogin,
+                ":newpassword" => $newpassword
+            ));
+
+            
+        }
+        
+    }
+        
+    
 }
-// session de user qui ne s'active pas lors du vardump 
-//users marche mais j'ai mal défini $session 

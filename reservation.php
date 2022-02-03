@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped:wght@300&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
-<body>
+<body >
     <?php
 
     include("navbar.php");
     require_once('./function/classe-reservation.php');
    
     $resa_solo = new Reservation(@$titre, @$description, @$debut, @$fin, @$id_user);
-    // $resa_solo->getResaSolo();
     $resa = $resa_solo->getResaSolo();
     ?>
 
