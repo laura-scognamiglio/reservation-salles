@@ -12,8 +12,8 @@
 
 
 body{
-
-    background-color: #92BCC0;
+   
+    background-color: #92bcc07c;
     overflow-x: hidden;
     font-family: 'IBM Plex Sans Thai Looped', sans-serif;
     a{
@@ -23,7 +23,8 @@ body{
     h2{
         color: #585154;
     }
-
+    
+   
 }
 
 .navbar{
@@ -33,22 +34,75 @@ body{
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-
+    
     ul{
         display: flex;
         justify-content: space-evenly;
         
     }
 }
+.wrapper {
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    perspective: 2px;
+}
 
+.section { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    height: 80vh;
+    color: #585154;
+    // text-shadow: 0 0 1px rgb(59, 57, 57);
+    
+}
 
-// section{
-//     .fomulaire{
-//         display: flex;
-//         flex-direction: column;
-//         justify-content: center;
-//         align-items: center;
-//     }
+.parallax{
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%;
+    // z-index: 9;
+
+}
+
+.parallax::after {
+    content: " ";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateZ(-1px) scale(1.5);
+    background-size: 100vh;
+    z-index: -1;
+}
+
+.static {
+    background-color: #92bcc07c ;
+   
+    
+}
+// .bg1::after {
+//     background-image: url("assets/salle_modele_nb.jpg");
 // }
+
+// .bg2::after {
+//     background-image: url("assets/artiste_modele.jpg");
+// }
+// .img-container{
+//     img{
+//         max-width: 50%;
+//     }
+//     max-width: 50%;
+//     width: 50vh;
+//     display: flex;
+//     justify-content: flex-end;
+//     flex-direction: flex-end;
+// }
+
+
    
     

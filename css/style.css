@@ -11,7 +11,7 @@
 }
 
 body {
-  background-color: #92BCC0;
+  background-color: #92bcc07c;
   overflow-x: hidden;
   font-family: "IBM Plex Sans Thai Looped", sans-serif;
 }
@@ -34,6 +34,45 @@ body h2 {
 .navbar ul {
   display: flex;
   justify-content: space-evenly;
+}
+
+.wrapper {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  perspective: 2px;
+}
+
+.section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  height: 80vh;
+  color: #585154;
+}
+
+.parallax {
+  flex-shrink: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.parallax::after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateZ(-1px) scale(1.5);
+  background-size: 100vh;
+  z-index: -1;
+}
+
+.static {
+  background-color: #92bcc07c;
 }
 
 /*# sourceMappingURL=style.css.map */

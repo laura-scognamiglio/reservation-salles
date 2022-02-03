@@ -1,7 +1,8 @@
-
-<nav class= "navbar">
+<header>
+    <nav class= "navbar">
         <form action="index.php" method="post" >
             <ul class="navul">
+                
                     <?php
                     session_start();
                 // balise php avec la condition de reconnaisance du profil user
@@ -27,10 +28,10 @@
                     ');
 
                 }
-                 
                 ?>
-
             </ul>
         </form>
- </nav>
+    </nav>
+</header>
+
   

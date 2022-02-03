@@ -14,5 +14,23 @@
     <?php
     include("navbar.php");
     ?>
+
+<main>
+        <section class = "section parallax bg1">
+            <img src = "assets/salle_modele_nb.jpg" alt = "Salle">
+        </section>
+        <section class = "section static">
+            <p>
+            L'Atelier du Mijo propose un lieu pour ateliers et stages de dessin et d'art-plastique.</br>
+            Mijo accompagne le regard et le geste par le parcours dans le paysage
+            ainsi qu'en atelier sur des sujets ou thématiques.
+            </p>
+        </section>
+
+        <section class = "section parallax bg2">
+            <img src = "assets/artiste_modele.jpg" alt= "modele">
+        </section>
+       
+    </main>
 </body>
 </html>
