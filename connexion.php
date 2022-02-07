@@ -25,6 +25,10 @@
         
         ?>
         <main>
+        <!-- <section class = "section parallax bg1">
+            <img src = "assets/modele_artiste.jpg" alt = "Salle">
+            <h1>Atelier Miraje</h1>
+        </section> -->
             <section class= "formulaire">
                 <h2 class= "sous-titre" >Connexion</h2>
                     <form class= "formIns" action= "connexion.php" method= "post">
@@ -40,6 +44,10 @@
                             </div> 
                     </form>
             </section>
+            <section class = "section parallax bg2">
+            <img src = "assets/artiste_homme_nb.jpg" alt = "modele">
+            <h1>Atelier Miraje</h1>
+        </section>
         </main>
         
     </body>

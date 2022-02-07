@@ -26,24 +26,24 @@ class Register extends User{
           
             if(empty($getLg))
             {
-                echo $error['login'] = "Login is empty <br>";
+                echo $error['login'] = "<p class = error>Login is empty </p>";
             }
 
             elseif(count($users) != 0)
             {
-                echo $error['login_used'] = "Login is alredy used <br>";
+                echo $error['login_used'] = "<p class = error>Login is alredy used </p>";
             }
 
             elseif(empty($getPw))
             {
-                echo $error['password'] = "Password is empty <br>";
+                echo $error['password'] = "<p class = error>Password is empty </p>";
             }
             else
             {
                 switch($getPw)
                 {
                     case($getPw != $confirm):
-                        echo $error['confirm'] = "Passwords doesn't match <br>";
+                        echo $error['confirm'] = "<p class = error>Passwords doesn't match </p>";
                         break;
                     
                     case(empty($error)):
@@ -55,11 +55,11 @@ class Register extends User{
                             ":login" => $getLg, 
                             ":password" => $pw_hash ));
                         
-                        echo "user successfully inserted <br>";
+                        echo "<p class = error>user successfully inserted </p>";
                         break;
 
                     default:
-                        echo "An error occurred. Please try again <br>";
+                        echo "<p class = error>An error occurred. Please try again </p>";
                         break;
                     return $insert;
                 }
@@ -94,12 +94,12 @@ class Register extends User{
 
                 header('Location:index.php');
                 echo "the user is connected";
-                var_dump($_SESSION);
+                // var_dump($_SESSION);
 
             }
-            elseif($getLg != $users[0]['login'])
+            elseif($getLg != @$users[0]['login'])
             {
-                echo "the id is wrong ";
+                echo "<p class = error>the id is wrong </p>";
             }
            return $users;
         }

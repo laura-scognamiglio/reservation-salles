@@ -24,22 +24,26 @@
 
     ?>
     <section class= "formulaire">
-                <h2 class= "sous-titre" >Inscription</h2>
-                <form class= "formIns"  action= "inscription.php" method= "post">
-                
-                        <div class= "form-group">
-                            <input type= "text" name= "login" placeholder= "login" autocomplete= "off">
-                        </div>
-                        <div class= "form-group">
-                            <input type= "password" name= "password" placeholder= "password" autocomplete= "off">
-                        </div>
-                        <div class= "form-group">
-                            <input type= "password" name= "confirm" placeholder= "confirm password" autocomplete= "off">
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" name= "submit" class="btn ">Valider</button>
-                        </div> 
-                </form>
-            </section>
+        <h2 class= "sous-titre" >Inscription</h2>
+        <form class= "formIns"  action= "inscription.php" method= "post">
+        
+                <div class= "form-group">
+                    <input type= "text" name= "login" placeholder= "login" autocomplete= "off">
+                </div>
+                <div class= "form-group">
+                    <input type= "password" name= "password" placeholder= "password" autocomplete= "off">
+                </div>
+                <div class= "form-group">
+                    <input type= "password" name= "confirm" placeholder= "confirm password" autocomplete= "off">
+                </div>
+                <div class="form-group">
+                    <button type="submit" name= "submit" class="btn ">Valider</button>
+                </div> 
+        </form>
+    </section>
+    <section class = "section parallax bg2">
+            <img src = "assets/artiste peintre.jpg" alt= "modele">
+            <h1>Atelier Miraje</h1>
+    </section>
 </body>
 </html>

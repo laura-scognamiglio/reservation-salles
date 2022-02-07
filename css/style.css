@@ -4,6 +4,7 @@
   box-sizing: border-box;
   text-decoration: none;
   list-style: none;
+  outline: none;
 }
 * ::-webkit-scrollbar {
   display: none;
@@ -12,14 +13,21 @@
 
 body {
   background-color: #92bcc07c;
-  overflow-x: hidden;
   font-family: "IBM Plex Sans Thai Looped", sans-serif;
 }
 body a {
   text-decoration: none;
   color: #585154;
 }
+body a:hover {
+  color: #3d383a;
+  font-weight: bold;
+}
 body h2 {
+  color: #585154;
+}
+body h1 {
+  z-index: 4;
   color: #585154;
 }
 
@@ -36,20 +44,13 @@ body h2 {
   justify-content: space-evenly;
 }
 
-.wrapper {
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
-  perspective: 2px;
-}
-
 .section {
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   position: relative;
-  height: 80vh;
+  height: 70vh;
   color: #585154;
 }
 
@@ -57,22 +58,94 @@ body h2 {
   flex-shrink: 0;
   min-width: 100%;
   min-height: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
-.parallax::after {
-  content: " ";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  transform: translateZ(-1px) scale(1.5);
-  background-size: 100vh;
-  z-index: -1;
+.static p {
+  font-size: 4em;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
-.static {
-  background-color: #92bcc07c;
+.deco {
+  font-family: "IBM Plex Sans Thai Looped", sans-serif;
+  background-color: #585154;
+  border-radius: 4px;
+  border: 0;
+  box-sizing: border-box;
+  color: #d8d8d8;
+  cursor: pointer;
+  height: 30px;
+  width: 50px;
+}
+
+.deco:hover {
+  background-color: #3d383a;
+  color: #e2dcdc;
+  font-family: "IBM Plex Sans Thai Looped", sans-serif;
+}
+
+.btn {
+  font-family: "IBM Plex Sans Thai Looped", sans-serif;
+  background-color: #585154;
+  border-radius: 7px;
+  border: 0;
+  box-sizing: border-box;
+  color: #d8d8d8;
+  cursor: pointer;
+  font-size: 18px;
+  height: 50px;
+  margin-top: 38px;
+  text-align: center;
+  width: 100%;
+}
+
+.btn:hover {
+  background-color: #3d383a;
+  color: #e2dcdc;
+  font-family: "IBM Plex Sans Thai Looped", sans-serif;
+}
+
+.formulaire {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 50vh;
+}
+.formulaire td {
+  padding: 2px;
+}
+.formulaire th {
+  padding: 10px;
+  padding-top: 5em;
+}
+.formulaire .vide {
+  background-color: #585154;
+}
+
+.form-group {
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+.form-group input {
+  position: relative;
+  width: 100%;
+}
+
+.centrer {
+  margin: 20px;
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.error {
+  display: flex;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=style.css.map */

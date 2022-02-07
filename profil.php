@@ -41,6 +41,9 @@
                         </div> 
                 </form>
         </section>
+        <section class = "section parallax bg2">
+            <img src = "assets/artiste peintre.jpg" alt= "modele">
+        </section>
     </main>
 </body>
 </html>

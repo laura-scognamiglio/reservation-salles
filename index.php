@@ -17,13 +17,14 @@
 
 <main>
         <section class = "section parallax bg1">
+            <h1>Scroll down to discover Atelier Miraje</h1>
             <img src = "assets/salle_modele_nb.jpg" alt = "Salle">
+            
         </section>
         <section class = "section static">
-            <p>
-            L'Atelier du Mijo propose un lieu pour ateliers et stages de dessin et d'art-plastique.</br>
-            Mijo accompagne le regard et le geste par le parcours dans le paysage
-            ainsi qu'en atelier sur des sujets ou thématiques.
+            <p style="text-indent:70px;">
+                A unique place for workshops, drawing and plastic art courses.</br>
+                The artists accompany student's gaze and gesture by analyzing living models.</br>
             </p>
         </section>
 

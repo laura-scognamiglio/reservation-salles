@@ -23,27 +23,34 @@
     <main>
         <section>
             <div>
-                <p>
+                <p class = centrer>
+                    Title:
                     <?php
                     echo $resa[0]['titre'];
                     ?>
                 </p>
-                <p>
+                <p class = centrer>
+                    Description:
                     <?php
                     echo $resa[0]['description']; 
                     ?>
                 </p>
-                <p>
+                <p class = centrer>
+                    Beginning at:
                     <?php
                     echo $resa[0]['debut']; 
                     ?>
                 </p>
-                <p>
+                <p class = centrer>
+                    Ending at:
                     <?php
                     echo $resa[0]['fin']; 
                     ?>
                 </p>
             </div>
+        </section>
+        <section class = "section parallax bg2">
+            <img src = "assets/salle_nb.jpg" alt= "modele">
         </section>
     </main>
 </body>

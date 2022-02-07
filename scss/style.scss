@@ -4,26 +4,32 @@
     box-sizing: border-box;
     text-decoration: none;
     list-style: none;
+    outline: none;
     ::-webkit-scrollbar{
         display: none;
         scroll-behavior: smooth;
       }
 }
 
-
 body{
-   
+
     background-color: #92bcc07c;
-    overflow-x: hidden;
     font-family: 'IBM Plex Sans Thai Looped', sans-serif;
     a{
         text-decoration: none;
         color: #585154;
     }
+    a:hover{
+        color: #3d383a;
+        font-weight: bold;
+    }
     h2{
         color: #585154;
     }
-    
+    h1{
+        z-index: 4;
+        color: #585154;
+    }
    
 }
 
@@ -38,15 +44,10 @@ body{
     ul{
         display: flex;
         justify-content: space-evenly;
-        
     }
+    
 }
-.wrapper {
-    height: 100vh;
-    overflow-x: hidden;
-    overflow-y: auto;
-    perspective: 2px;
-}
+
 
 .section { 
     display: flex;
@@ -54,9 +55,8 @@ body{
     align-items: center;
     overflow: hidden;
     position: relative;
-    height: 80vh;
+    height: 70vh;
     color: #585154;
-    // text-shadow: 0 0 1px rgb(59, 57, 57);
     
 }
 
@@ -64,45 +64,106 @@ body{
     flex-shrink: 0;
     min-width: 100%;
     min-height: 100%;
-    // z-index: 9;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 
 }
 
-.parallax::after {
-    content: " ";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    transform: translateZ(-1px) scale(1.5);
-    background-size: 100vh;
-    z-index: -1;
-}
 
 .static {
-    background-color: #92bcc07c ;
    
-    
+    p{ 
+        font-size: 4em;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
 }
-// .bg1::after {
-//     background-image: url("assets/salle_modele_nb.jpg");
-// }
 
-// .bg2::after {
-//     background-image: url("assets/artiste_modele.jpg");
-// }
-// .img-container{
-//     img{
-//         max-width: 50%;
-//     }
-//     max-width: 50%;
-//     width: 50vh;
-//     display: flex;
-//     justify-content: flex-end;
-//     flex-direction: flex-end;
-// }
+.deco{
+    font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+    background-color: #585154;
+    border-radius: 4px;
+    border: 0;
+    box-sizing: border-box;
+    color: rgb(216, 216, 216);
+    cursor: pointer;
+    height: 30px;
+    width: 50px;
+   
 
+
+} 
+
+.deco:hover{
+    background-color: #3d383a;
+    color: rgb(226, 220, 220);
+    font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+}
+
+.btn{
+    font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+    background-color: #585154;
+    border-radius: 7px;
+    border: 0;
+    box-sizing: border-box;
+    color: rgb(216, 216, 216);
+    cursor: pointer;
+    font-size: 18px;
+    height: 50px;
+    margin-top: 38px;
+    // outline: 0;
+    text-align: center;
+    width: 100%;
+}
+.btn:hover{
+    background-color: #3d383a;
+    color: rgb(226, 220, 220);
+    font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+}
+
+.formulaire{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 50vh;
+    
+    td{
+        padding: 2px;
+    }
+    th{
+        padding: 10px;
+        padding-top: 5em;
+    }
+    .vide{
+        background-color: #585154;
+    }
+  
+}
+
+ .form-group {
+    border-radius: 20px;
+    box-sizing: border-box;
+    input{
+        position: relative;
+        width: 100%;
+    }
+}
+
+.centrer{
+    margin: 20px;
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    // flex-direction: column;
+}
+
+.error{
+    display: flex;
+    justify-content: center;
+}
 
    
     

@@ -24,7 +24,7 @@ $resa_salle->getReservation();
 
     ?>
         <main>
-            <section class="horaire">
+            <section class="formulaire">
 
                 <table class="struct">
                     <thead>
@@ -64,7 +64,7 @@ $resa_salle->getReservation();
                                     echo "<td> <a href = 'reservation.php?id_resa=$id_resa' > $titre </a> </td>"; 
                                     
                                     }else{
-                                        echo '<td> </td>';
+                                        echo '<td class = "vide"> </td>';
                                     }
                                     
                                 }
